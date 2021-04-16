@@ -19,24 +19,25 @@
 
 @Styles.Render("~/Content/jquery.dataTables.min.css")
 @section Scripts {
-    @Scripts.Render("~/Scripts/jquery.dataTables.min.js")
-    <script>
-    const columns = [];
-    const headers = [];
+@Scripts.Render("~/Scripts/jquery.dataTables.min.js")
+<script>
+    const columns = [],
+        headers = [];
 
     @foreach (string header in headers) {
         @:headers.push("@header");
     }
-    headers.forEach(header => columns.push({ "data": header.replace(" ", ""), "autoWidth": true }));
+        headers.forEach(header => columns.push({ "data": header.replace(" ", ""), "autoWidth": true }));
 
-    $(document).ready(() => { $("#dataTable").DataTable({
-    "ajax": {
-             "url": "/Home/LoadTableData",
+    $(document).ready(() => {
+        $("#dataTable").DataTable({
+            "ajax": {
+                "url": "/Home/LoadTableData",
                 "type": "GET",
                 "datatype": "json"
             },
             "columns": columns
         });
     })
-    </script>
+</script>
 }
