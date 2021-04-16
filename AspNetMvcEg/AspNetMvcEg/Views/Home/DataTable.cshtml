@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Data Table Example";
+    string[] headers = new string[] { "Employee Name", "Company", "Phone", "Country", "City", "Postal Code" };
+}
+<h2>@ViewBag.Title</h2>
+
+<div class="container">
+    <table id="dataTable">
+        <thead>
+            <tr>
+                @foreach (string header in headers)
+                {
+                    <th>@header</th>
+                }
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@Styles.Render("~/Content/jquery.dataTables.min.css")
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery.dataTables.min.js")
+    <script>
+    const columns = [];
+    const headers = [];
+
+    @foreach (string header in headers) {
+        @:headers.push("@header");
+    }
+    headers.forEach(header => columns.push({ "data": header.replace(" ", ""), "autoWidth": true }));
+
+    $(document).ready(() => { $("#dataTable").DataTable({
+    "ajax": {
+             "url": "/Home/LoadTableData",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": columns
+        });
+    })
+    </script>
+}
