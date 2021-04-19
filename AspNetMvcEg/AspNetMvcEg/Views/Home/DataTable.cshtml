@@ -5,6 +5,9 @@
 <h2>@ViewBag.Title</h2>
 
 <div class="container">
+    <button onclick="toggleContries()">Test Toggle</button>
+    <br />
+    <br />
     <div class="data-table">
         <table id="dataTable">
             <thead>
@@ -25,14 +28,24 @@
 <script>
     const columns = [],
         headers = [];
+    let isUsa = false;
+    let dataTable;
+    const toggleContries =
+        () => {
+            isUsa = !isUsa;
+            isUsa ?
+                dataTable.search("USA").draw() :
+                dataTable.search("").draw();
+        }
 
-    @foreach (string header in headers) {
+    @foreach (string header in headers)
+        {
         @:headers.push("@header");
     }
         headers.forEach(header => columns.push({ "data": header.replace(" ", ""), "autoWidth": true }));
 
     $(document).ready(() => {
-        $("#dataTable").DataTable({
+        dataTable = $("#dataTable").DataTable({
             "ajax": {
                 "url": "/Home/LoadTableData",
                 "type": "GET",
@@ -40,7 +53,7 @@
             },
             "columns": columns
         });
-    })
+    });
 </script>
 }
 @Styles.Render("~/Content/data-tables.css")
