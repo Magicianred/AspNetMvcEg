@@ -5,16 +5,18 @@
 <h2>@ViewBag.Title</h2>
 
 <div class="container">
-    <table id="dataTable">
-        <thead>
-            <tr>
-                @foreach (string header in headers)
-                {
-                    <th>@header</th>
-                }
-            </tr>
-        </thead>
-    </table>
+    <div class="data-table">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    @foreach (string header in headers)
+                    {
+                        <th>@header</th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 
 @Styles.Render("~/Content/jquery.dataTables.min.css")
@@ -41,3 +43,4 @@
     })
 </script>
 }
+@Styles.Render("~/Content/data-tables.css")
