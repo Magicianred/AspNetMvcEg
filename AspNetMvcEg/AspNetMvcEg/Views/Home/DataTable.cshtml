@@ -4,12 +4,11 @@
 }
 <h2>@ViewBag.Title</h2>
 
-<div class="container">
+<div>
     <button onclick="toggleContries()">Test Toggle</button>
     <br />
     <br />
-    <div class="data-table">
-        <table id="dataTable">
+        <table id="dataTable" class="display">
             <thead>
                 <tr>
                     @foreach (string header in headers)
@@ -19,13 +18,14 @@
                 </tr>
             </thead>
         </table>
-    </div>
+
 </div>
 
 @Styles.Render("~/Content/jquery.dataTables.min.css")
 @section Scripts {
-@Scripts.Render("~/Scripts/jquery.dataTables.min.js")
-<script>
+    @Scripts.Render("~/Scripts/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/dataTables.responsive.min.js")
+    <script>
     const columns = [],
         headers = [];
     let isUsa = false;
@@ -51,9 +51,9 @@
                 "type": "GET",
                 "datatype": "json"
             },
-            "columns": columns
+            "columns": columns,
+            "responsive": true
         });
     });
-</script>
+    </script>
 }
-@Styles.Render("~/Content/data-tables.css")
