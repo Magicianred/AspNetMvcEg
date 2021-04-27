@@ -48,6 +48,20 @@
     <script>
     $(document).ready(function () {
         $('.js-example-basic-single').select2();
+
+        $("input[name='phone_num']").keyup(function () {
+            var val_old = $(this).val();
+            var val = val_old.replace(/\D/g, '');
+            var len = val.length;
+            if (len >= 1)
+                val = '(' + val.substring(0);
+            if (len >= 3)
+                val = val.substring(0, 4) + ') ' + val.substring(4);
+            if (len >= 6)
+                val = val.substring(0, 9) + '-' + val.substring(9);
+            if (val != val_old)
+                $(this).focus().val('').val(val);
+        });
     });
     </script>
 </body>
