@@ -10,13 +10,17 @@
 <br />
 
 <h3 align=center>
-  An ASP.NET MVC web app eg. ([for] "example") app and POC (proof-of-concept). 
+  An ASP.NET MVC web app eg. ([for] "example") and POC (proof-of-concept) web app. 
 </h3>
 
 <br />
 <br />
 
 <hr>
+
+<br />
+
+![example workflow](https://github.com/pjnalls/AspNetMvcEg/actions/workflows/AspNetMvcCI.yml/badge.svg)
 
 <br />
 
