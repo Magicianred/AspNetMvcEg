@@ -14,9 +14,9 @@ namespace AspNetMvcEg.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Form()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your form page.";
 
             return View();
         }
